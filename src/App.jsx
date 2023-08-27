@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import RocketCard from './components/RocketCard';
@@ -18,6 +18,10 @@ function App() {
       console.error("Error fetching rockets:", error);
     }
   };
+  useEffect(() => {
+    fetchRockets()
+  }, [])
+  
 
   // Handler for rocket card click, opens the popup
   const handleRocketClick = (rocket) => {
