@@ -8,6 +8,8 @@ function App() {
   const [rockets, setRockets] = useState([]); // State to store fetched rockets
   const [selectedRocket, setSelectedRocket] = useState(null); // State to manage selected rocket for popup
   const [filteredRockets, setFilteredRockets] = useState([]); // State to store filtered rockets
+  const [currentPage, setCurrentPage] = useState(1); // Current page for pagination
+  const RocketsPerPage = 10; // Number of rockets to display per page
 
   // Fetch rockets from the SpaceX API and set them in the state
   const fetchRockets = async () => {
@@ -58,28 +60,27 @@ function App() {
     } else {
       setFilteredRockets([]);
     }
+    setCurrentPage(1); // Reset current page when applying filters
   };
+
+  // Paginate rockets based on current page
+  const indexOfLastRocket = currentPage * RocketsPerPage;
+  const indexOfFirstRocket = indexOfLastRocket - RocketsPerPage;
+  const currentRockets = filteredRockets.length > 0 ? filteredRockets : rockets;
+  const rocketsToDisplay = currentRockets.slice(indexOfFirstRocket, indexOfLastRocket);
 
   return (
     <div className="app">
       <Header />
       <SearchBar onApplyFilters={handleApplyFilters} />
       <section className="rocket-grid">
-        {filteredRockets.length > 0
-          ? filteredRockets.map((rocket) => (
-              <RocketCard
-                key={rocket.id}
-                rocket={rocket}
-                onRocketClick={handleRocketClick}
-              />
-            ))
-          : rockets.map((rocket) => (
-              <RocketCard
-                key={rocket.id}
-                rocket={rocket}
-                onRocketClick={handleRocketClick}
-              />
-            ))}
+          <RocketCard
+            rocketsToDisplay={rocketsToDisplay} // Pass rocketsToDisplay instead of rockets
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
+            onRocketClick={handleRocketClick}
+          />
+        
       </section>
       {selectedRocket && (
         <RocketPopup rocket={selectedRocket} onClosePopup={handleClosePopup} />
