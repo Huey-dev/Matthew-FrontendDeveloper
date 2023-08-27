@@ -7,8 +7,10 @@ const RocketPopup = ({ rocket, onClosePopup }) => {
         Close
       </button>
       <h2>{rocket.name}</h2>
-      <img src={rocket.image} alt={rocket.name} />
-      {/* Display other detailed rocket information */}
+      {rocket.flickr_images.map((imageUrl, index) => (
+        <img key={index} src={imageUrl} alt={`Rocket ${index}`} />
+      ))}
+      {/* Other details */}
     </div>
   );
 };
