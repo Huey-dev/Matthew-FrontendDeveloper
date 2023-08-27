@@ -7,6 +7,9 @@ import RocketPopup from './components/RocketPopup';
 function App() {
   const [rockets, setRockets] = useState([]); // State to store fetched rockets
   const [selectedRocket, setSelectedRocket] = useState(null); // State to manage selected rocket for popup
+  // store filtered rockets
+  const [filteredImages, setFilteredImages] = useState([])
+  const [shouldRenderRockets, setShouldRenderRockets] = useState(false)
 
   // Fetch rockets from the SpaceX API and set them in the state
   const fetchRockets = async () => {
@@ -33,12 +36,34 @@ function App() {
     setSelectedRocket(null);
   };
 
+  // Handler for applying filters and updating filteredImages state
+  const handleApplyFilters = (filters) => {
+    const {filterType, filterValue} = filters
+    if (filterType && filterValue) {
+      const newFilteredRockets = rockets.filter((rocket) => {
+        if (filterType === "status") {
+          return rocket.status === filterValue
+        } else if (filterType === "original_launch") {
+          return rocket.original_launch === filterValue
+        } else if (filterType === "type") {
+          return rocket.type === filterValue
+        }
+        return false
+      })
+      setFilteredImages(newFilteredRockets)
+    } else {
+      setFilteredImages([])
+    }
+    setShouldRenderRockets(true)
+  };
+
   return (
     <div className="app">
       <Header />
-      <SearchBar />
+      <SearchBar onApplyFilters={handleApplyFilters}/>
       <section className="rocket-grid">
-        {rockets.map((rocket) => (
+        {shouldRenderRockets &&
+        (filteredImages.length > 0 ? filteredImages : rockets).map ((rocket) => (
           <RocketCard
             key={rocket.id}
             rocket={rocket}
