@@ -72,7 +72,9 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <SearchBar onApplyFilters={handleApplyFilters} />
+      <div className='px-4 md:px-0' >
+        <SearchBar onApplyFilters={handleApplyFilters} />
+      </div>
       <section className="rocket-grid">
           <RocketCard
             rocketsToDisplay={rocketsToDisplay} // Pass rocketsToDisplay instead of rockets

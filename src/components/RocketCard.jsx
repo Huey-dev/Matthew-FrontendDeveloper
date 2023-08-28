@@ -20,7 +20,7 @@ const RocketCard = ({ rocketsToDisplay, currentPage, onPageChange, onRocketClick
         </div>
       ))}
       {/* Pagination controls */}
-      <div className="flex justify-center mt-4">
+      <div className=" flex justify-center mt-4flex justify-between items-center mt-4 space-x-4">
       <button
           onClick={() => onPageChange(currentPage - 1)}
           className={`px-4 py-2 border rounded ${
@@ -30,7 +30,7 @@ const RocketCard = ({ rocketsToDisplay, currentPage, onPageChange, onRocketClick
         >
           Previous
         </button>
-        <span className="mx-4">{currentPage}</span>
+        <span className="mx-4 p-2 rounded-lg bg-white shadow-md">{currentPage}</span>
         <button
           onClick={() => onPageChange(currentPage + 1)}
           className={`px-4 py-2 border rounded ${
