@@ -7,7 +7,7 @@ function SearchBar({ onFilterChange, onApplyFilters }) {
   });
 
   return (
-    <div className="flex flex-col items-center my-8">
+    <div className="w-full flex flex-col items-center my-8">
       <div className="flex space-x-2">
         <select
           className="p-2 border rounded bg-gray-100"

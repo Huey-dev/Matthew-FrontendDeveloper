@@ -2,7 +2,7 @@ import React from 'react';
 
 const RocketsPerPage = 10;
 
-const RocketCard = ({ rocketsToDisplay, currentPage, onPageChange, onRocketClick }) => {
+const RocketCard = ({ rocketsToDisplay,  onRocketClick }) => {
   return (
     <div className="flex flex-wrap justify-center -mx-2">
       {rocketsToDisplay.map((rocket, index) => (
@@ -19,28 +19,7 @@ const RocketCard = ({ rocketsToDisplay, currentPage, onPageChange, onRocketClick
           <h3>{rocket.name}</h3>
         </div>
       ))}
-      {/* Pagination controls */}
-      <div className=" flex justify-center mt-4flex justify-between items-center mt-4 space-x-4">
-      <button
-          onClick={() => onPageChange(currentPage - 1)}
-          className={`px-4 py-2 border rounded ${
-          currentPage === 1 ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'
-          }`}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </button>
-        <span className="mx-4 p-2 rounded-lg bg-white shadow-md">{currentPage}</span>
-        <button
-          onClick={() => onPageChange(currentPage + 1)}
-          className={`px-4 py-2 border rounded ${
-          rocketsToDisplay.length < RocketsPerPage ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'
-          }`}
-          disabled={rocketsToDisplay.length < RocketsPerPage}
-        >
-          Next
-        </button>
-      </div>
+      
     </div>
   );
 };
