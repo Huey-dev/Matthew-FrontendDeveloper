@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import RocketPopup from '../src/components/RocketPopup';
+import RocketPopup from '../../src/components/RocketPopup';
 
 test('renders rocket popup content', () => {
   // Render the RocketPopup component

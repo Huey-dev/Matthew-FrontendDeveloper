@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import RocketCard from '../src/components/RocketCard';
+import RocketCard from '../../src/components/RocketCard';
 
 test('renders rocket card content', () => {
   // Define mock rocket data

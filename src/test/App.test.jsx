@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import App from '../src/App';
+import App from '../../src/App';
 
 test('renders app header', () => {
   // Render the App component
