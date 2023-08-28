@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Header from '../../src/components/Header';
+import Header from '/../src/components/Header';
 import '@testing-library/jest-dom/extend-expect';
 
 
